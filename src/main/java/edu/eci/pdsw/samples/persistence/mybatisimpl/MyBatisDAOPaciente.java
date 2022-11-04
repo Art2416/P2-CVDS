@@ -66,5 +66,10 @@ public class MyBatisDAOPaciente implements DaoPaciente {
 
     }
 
+    @Override
+    public Paciente getPacienteById(int id, TipoIdentificacion tipoId) {
+        return pacienteMapper.getPacienteById(id,tipoId);
+    }
+
 
 }

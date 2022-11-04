@@ -19,6 +19,7 @@ package edu.eci.pdsw.samples.persistence;
 import edu.eci.pdsw.samples.entities.Consulta;
 import edu.eci.pdsw.samples.entities.Paciente;
 import edu.eci.pdsw.samples.entities.TipoIdentificacion;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -37,5 +38,11 @@ public interface DaoPaciente {
     public void update(Paciente e) throws PersistenceException;
     
     public void addConsulta(int id, TipoIdentificacion tipoId, Consulta c) throws PersistenceException;
+
+    public Paciente getPacienteById(int id, TipoIdentificacion tipoId);
+
+
+
+
     
 }

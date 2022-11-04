@@ -21,4 +21,28 @@
         FROM
             PACIENTES as p
     </select>
+
+    <select id="getPacienteById" resultMap="PacienteResult" parameterType="Map">
+        SELECT
+            p.id,
+            p.tipo_id,
+            p.fecha_nacimiento,
+            p.nombre
+        FROM
+            PACIENTES as p
+        WHERE
+            p.id = #{id} AND p.tipo_id = #{tipo_id}
+    </select>
+    
+    <select id="getMenoresEnfermedadContagiosa" resultMap="PacientResult" parameterType="Map">
+        SELECT
+            p.id,
+            p.tipo_id,
+            p.fecha_nacimiento,
+            p.nombre
+        FROM
+            PACIENTES as p
+        WHERE
+            p.tipo_id = "TI" OR p.tipo_id = "RC" and 
+    </select>
 </mapper>
