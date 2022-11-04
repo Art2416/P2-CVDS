@@ -1,26 +1,74 @@
 ## Escuela Colombiana de Ingeniería
 
-### PDSW – Procesos de desarrollo de Software
+### CVDS – Parcial práctico
 ### Parcial Segundo Tercio
 
+## Autor: David Arturo Narváez Lossa
 
-**IMPORTANTE**
+## Solución 
 
-* Deseable Trabajar en Linux (para evitar problemas con las instrucciones finales).
-* Se puede consultar en la Web: APIs/Documentación de lenguaje y frameworks (Primefaces, Guice, MyBatis, etc), y enunciados de los laboratorios (se pueden revisar los fuentes incluidos con los dichos enunciados).
-* No se permite: Usar memorias USB, acceder a redes sociales, clientes de correo, o sistemas de almacenamiento en la nube (Google Drive, DropBox, etc). El uso de éstos implicará anulación.
-* Clone el proyecto con GIT, NO lo descargue directamente.
-* NO modifique los indicado en consultaPaciente.xhtml.
-* El filtrado y ordenamiento de los datos DEBE realizarse en el motor de base de datos, a través del uso de SQL. Consultar todos los datos y filtrarlos en el servidor de aplicaciones -que es supremamente INEFICIENTE- se evaluará como INCORRECTO.
+1. Inicialmente clone el repositorio con el comando
+~~~
+git clone https://github.com/isanchezf/2022-2-par2t.git
+~~~
+![](./img/1.png)
+
+2. Ya teniendo el repositorio de manera local, lo primero fue compilar con ayuda de maven 
+~~~
+mvn compile
+~~~
+![](./img/2.png)
+
+3. Posteriormente probamos el servidor web local con el comando
+~~~
+mvn tomcat7:run
+~~~
+![](./img/3.png)
+4. Una vez hecho esto, podiamos ver lo que aparece en nuestro navegador escribiendo en la barra de busqueda
+~~~
+http://localhost:8080/consultaPaciente.xhtml
+~~~
+![](./img/4.png)
+
+aquí únicamente era visible el "titulo" puesto que la dirección estaba incompleta y para modificarlo debiamos poner
+~~~
+http://localhost:8080/faces/consultaPaciente.xhtml
+~~~
+5. Ahora vamos a implementar la primer consulta (consultarPacientePorId), para ello entramos a **PacienteMapper.xml** aquí realizamos la consulta de tipo sql, pero
+en el select agregamos **parameterType** puesto que en esta primer consulta debemos ingresar dos parámetros **id** y **tipo_id**
+![](./img/5.png)
+~~~
+<select id="getPacienteById" resultMap="PacienteResult" parameterType="Map">
+        SELECT
+            p.id,
+            p.tipo_id,
+            p.fecha_nacimiento,
+            p.nombre
+        FROM
+            PACIENTES as p
+        WHERE
+            p.id = #{id} AND p.tipo_id = #{tipo_id}
+    </select>
+~~~
+6. En la carpeta de persistencia, modificamos la interfaz de mappers **PacienteMapper** con la nueva función **getPacienteById**
+![](./img/6.png)
+7. De igual manera lo hacemos tanto en la interfaz **DaoPaciente** y en la clase **MyBatisDAOPaciente**
+![](./img/7.png)
+![](./img/8.png)
+8. En la parte de servicios modificamos la función **ConsultarPacientesPorId** en la clase de **ServiciosPacientempl** de manera que la interfaz emplea la función
+**getPacienteById**
+![](./img/9.png)
+
+9. Para probar esta nueva consulta lo realizamos en **ServicesJUnitTest**  allí llamamos a nuestra función de **consultarPacientePorId** guardando previamente 
+el nombre del paciente y lo verificamos con ayuda de un Assert.assertEquals; en este caso el nombre era **Carmenzo** y como ambos nombres son iguales está bien
+~~~
+ Paciente paciente = ServiciosPacientesFactory.getInstance().getTestingForumServices().consultarPacientesPorId(9876, TipoIdentificacion.TI);
+ Assert.assertEquals(paciente.getNombre(),"Carmenzo");
+~~~
+![](./img/10.png)
 
 
-Se le han dado los fuentes de un avance parcial de una plataforma de consultas de pacientes de una IPS en línea. En esta plataforma los médicos podrán registrar y buscar pacientes así como buscar y registrar las consultas.
-Adicionalmente, la secretaria de salud puede hacer búsquedas para control epidemiológico.
 
-Para el Sprint en curso, se han seleccionado las siguientes historias de usuario del Backlog de producto:
-
-Recuerde que en el formato XML no se puede utilizar '<' y '>', por ejemplo al realizar comparaciones, 
- utilice '&amp;lt;' o '&amp;gt;' respectivamente. 
 
 ## Historia de usuario #1
 
