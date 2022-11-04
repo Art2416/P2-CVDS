@@ -5,24 +5,34 @@
 
 ## Autor: David Arturo Narváez Lossa
 
+## Solución 
 
-**IMPORTANTE**
+1. Inicialmente clone el repositorio con el comando
+~~~
+git clone https://github.com/isanchezf/2022-2-par2t.git
+~~~
+2. Ya teniendo el repositorio de manera local, lo primero fue compilar con ayuda de maven 
+~~~
+mvn compile
+~~~
+3. Posteriormente probamos el servidor web local con el comando
+~~~
+mvn tomcat7:run
+~~~
+4. Una vez hecho esto, podiamos ver lo que aparece en nuestro navegador escribiendo en la barra de busqueda
+~~~
+http://localhost:8080/consultaPaciente.xhtml
+~~~
+aquí únicamente era visible el "titulo" puesto que la dirección estaba incompleta y para modificarlo debiamos poner
+~~~
+http://localhost:8080/faces/consultaPaciente.xhtml
+~~~
+5. Ahora vamos a implementar la primer consulta 
 
-* Deseable Trabajar en Linux (para evitar problemas con las instrucciones finales).
-* Se puede consultar en la Web: APIs/Documentación de lenguaje y frameworks (Primefaces, Guice, MyBatis, etc), y enunciados de los laboratorios (se pueden revisar los fuentes incluidos con los dichos enunciados).
-* No se permite: Usar memorias USB, acceder a redes sociales, clientes de correo, o sistemas de almacenamiento en la nube (Google Drive, DropBox, etc). El uso de éstos implicará anulación.
-* Clone el proyecto con GIT, NO lo descargue directamente.
-* NO modifique los indicado en consultaPaciente.xhtml.
-* El filtrado y ordenamiento de los datos DEBE realizarse en el motor de base de datos, a través del uso de SQL. Consultar todos los datos y filtrarlos en el servidor de aplicaciones -que es supremamente INEFICIENTE- se evaluará como INCORRECTO.
 
 
-Se le han dado los fuentes de un avance parcial de una plataforma de consultas de pacientes de una IPS en línea. En esta plataforma los médicos podrán registrar y buscar pacientes así como buscar y registrar las consultas.
-Adicionalmente, la secretaria de salud puede hacer búsquedas para control epidemiológico.
 
-Para el Sprint en curso, se han seleccionado las siguientes historias de usuario del Backlog de producto:
 
-Recuerde que en el formato XML no se puede utilizar '<' y '>', por ejemplo al realizar comparaciones, 
- utilice '&amp;lt;' o '&amp;gt;' respectivamente. 
 
 ## Historia de usuario #1
 
