@@ -1,7 +1,9 @@
 ## Escuela Colombiana de Ingeniería
 
-### PDSW – Procesos de desarrollo de Software
+### CVDS – Parcial práctico
 ### Parcial Segundo Tercio
+
+## Autor: David Arturo Narváez Lossa
 
 
 **IMPORTANTE**
