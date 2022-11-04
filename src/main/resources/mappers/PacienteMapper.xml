@@ -43,6 +43,6 @@
         FROM
             PACIENTES as p
         WHERE
-            p.tipo_id = "TI" OR p.tipo_id = "RC" and 
+            p.tipo_id = "TI" OR p.tipo_id = "RC" and
     </select>
 </mapper>
