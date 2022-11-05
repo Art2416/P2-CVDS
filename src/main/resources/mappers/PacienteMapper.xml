@@ -40,9 +40,13 @@
             p.tipo_id,
             p.fecha_nacimiento,
             p.nombre
+            c.idCONSULTAS,
+            c.fecha_y_hora,
+            c.resumen
         FROM
-            PACIENTES as p
+            PACIENTES as p JOIN CONSULTAS as c ON
+                p.id = c.PACIENTES_id AND p.tipo_id = c.PACIENTES_tipo_id
         WHERE
-            p.tipo_id = "TI" OR p.tipo_id = "RC" and
+            (p.tipo_id = "TI" OR p.tipo_id = "RC") AND (c.resumen LIKE "%varicela%" OR c.resumen LIKE "%hepatitis%")
     </select>
 </mapper>

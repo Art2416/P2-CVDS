@@ -71,5 +71,10 @@ public class MyBatisDAOPaciente implements DaoPaciente {
         return pacienteMapper.getPacienteById(id,tipoId);
     }
 
+    @Override
+    public Paciente getMenoresEnfermedadContagiosa(int id, TipoIdentificacion tipoId) {
+        return pacienteMapper.getMenoresEnfermedadContagiosa(id, tipoId);
+    }
+
 
 }

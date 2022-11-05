@@ -41,6 +41,8 @@ public interface DaoPaciente {
 
     public Paciente getPacienteById(int id, TipoIdentificacion tipoId);
 
+    public Paciente getMenoresEnfermedadContagiosa(int id, TipoIdentificacion tipoId);
+
 
 
 

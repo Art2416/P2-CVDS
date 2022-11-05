@@ -38,7 +38,8 @@ public class PacientesBean {
     ServiciosPaciente serviciosPaciente;
     TipoIdentificacion tipoIdentificacion = TipoIdentificacion.CC;
 
-    int idPaciente = 0;
+    int idPaciente = getPaciente().getId();
+
 
     public void setTipoIdentificacion(TipoIdentificacion tipoIdentificacion) {
         this.tipoIdentificacion = tipoIdentificacion;

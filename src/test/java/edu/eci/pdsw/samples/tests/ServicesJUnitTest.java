@@ -62,7 +62,7 @@ public class ServicesJUnitTest {
      * @throws SQLException 
      */
     private Connection getConnection() throws SQLException{
-        return DriverManager.getConnection("jdbc:h2:file:./target/db/testdb;MODE=MYSQL", "anonymous", "anonymous");
+        return DriverManager.getConnection("jdbc:mysql://desarrollo.is.escuelaing.edu.co:3306/bdprueba?useSSL=false", "bdprueba", "prueba2019");
     }
     
     @Test
