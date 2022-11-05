@@ -93,7 +93,7 @@ en la clase **PacientesBean**
 11. a continuación volvemos a **PacienteMapper.xml** para plantear la segunda consulta **consultarMenoresConEnfermedadContagiosa**, esta es un poco más compleja puesto que
 se emplean las dos tablas **"PACIENTES"-"CONSULTAS"**
 
-![](./img/13.PNG)
+![](./img/13.png)
 
 ## Historia de usuario #2
 
@@ -107,20 +107,37 @@ se emplean las dos tablas **"PACIENTES"-"CONSULTAS"**
 > **Criterio de aceptación:** El reporte NO debe requerir entrar parámetro alguno. Se considerán como enfermedades contagiosas: 'hepatitis' y 'varicela'. El reporte sólo debe contener el número y tipo de identificación  del paciente y la fecha de nacimiento, ordenados por edad de mayor a menor.
   -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+~~~
+<select id="getMenoresEnfermedadContagiosa" resultMap="PacientResult" parameterType="Map">
+        SELECT
+            p.id,
+            p.tipo_id,
+            p.fecha_nacimiento,
+            p.nombre
+            c.idCONSULTAS,
+            c.fecha_y_hora,
+            c.resumen
+        FROM
+            PACIENTES as p JOIN CONSULTAS as c ON
+                p.id = c.PACIENTES_id AND p.tipo_id = c.PACIENTES_tipo_id
+        WHERE
+            (p.tipo_id = "TI" OR p.tipo_id = "RC") AND (c.resumen LIKE "%varicela%" OR c.resumen LIKE "%hepatitis%")
+    </select>
+~~~
 
 12. como lo hicimos en la consulta anterior debemos modificar la interfaz de mappers **PacienteMapper** con la nueva función **getMenoresEnfermedadContagiosa**
 
-![](./img/14.PNG)
+![](./img/14.png)
 
 NOTA: en este caso de igual manera ponemos dos parámetros puesto que en la consulta verificamos el tipo de identificación para hacer la valuación de si es menor de edad o no
 
 13. Implementamos de igual manera esta función **getMenoresEnfermedadContagiosa** en la interfaz de **DaoPaciente** y hacemos @override en la clase **MyBatisDAOPaciente.java**
 
-![](./img/15.PNG)
-![](./img/16.PNG)
+![](./img/15.png)
+![](./img/16.png)
 
 
-Modelos necesarios para la realización de este parcial:
+### Modelos para poder realizar este parcial:
 
 ![](./img/Diagram.png)
 
